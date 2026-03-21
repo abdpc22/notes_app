@@ -6,6 +6,33 @@ class NotesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(body: const NotesViewBody()));
+    return SafeArea(
+      child: Scaffold(
+        body: const NotesViewBody(),
+        floatingActionButton: FloatingActionButton(
+          shape: const CircleBorder(),
+          backgroundColor: Colors.tealAccent,
+          child: Icon(Icons.add, color: Colors.black),
+          onPressed: () {
+            showModalBottomSheet(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadiusGeometry.circular(30),
+              ),
+              context: context,
+              builder: (context) => ModalSheet(),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class ModalSheet extends StatelessWidget {
+  const ModalSheet({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
