@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notesapp/Widgets/CustomTextField.dart';
-import '../Widgets/CustomButton.dart';
+import '../Widgets/ModalSheet.dart';
 import '../Widgets/NotesViewBody.dart';
 
 class NotesView extends StatelessWidget {
@@ -25,33 +24,6 @@ class NotesView extends StatelessWidget {
             );
           },
         ),
-      ),
-    );
-  }
-}
-
-class ModalSheet extends StatelessWidget {
-  const ModalSheet({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.only(top: 50, right: 25, left: 20),
-            child: Column(
-              children: const [
-                Customtextfield(hinttext: "Title"),
-                SizedBox(height: 30),
-                Customtextfield(hinttext: 'content', maxlines: 5),
-                SizedBox(height: 15),
-              ],
-            ),
-          ),
-          CustomButton(),
-          SizedBox(height: 40),
-        ],
       ),
     );
   }
