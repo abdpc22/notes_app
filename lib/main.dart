@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:notesapp/Models/NoteModal.dart';
 import 'package:notesapp/Views/NotesView.dart';
 import 'package:notesapp/Widgets/edit_note_view.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:notesapp/constants.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(NoteModalAdapter());
+  await Hive.openBox<NoteModal>(kNotesBox);
   runApp(const NotesApp());
 }
 
