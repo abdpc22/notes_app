@@ -6,12 +6,15 @@ import 'package:notesapp/Widgets/edit_note_view.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notesapp/constants.dart';
 import 'package:notesapp/cubit/add_note_cubit/add_note_cubit.dart';
+import 'package:notesapp/simple_bloc_observer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Hive.registerAdapter(NoteModalAdapter());
   await Hive.initFlutter();
   await Hive.openBox<NoteModal>(kNotesBox);
-  Hive.registerAdapter(NoteModalAdapter());
+
+  Bloc.observer = simple_bloc_observer();
   runApp(const NotesApp());
 }
 

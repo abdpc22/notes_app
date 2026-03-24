@@ -9,21 +9,19 @@ class ModalSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: BlocConsumer<AddNoteCubit, AddNoteState>(
-        listener: (context, state) {
-          if (state is AddNoteFailure) {
-            print("failed ${state.errmsg}");
-          }
-          if (state is AddNoteSuccess) {}
-        },
-        builder: (context, state) {
-          return ModalProgressHUD(
-            inAsyncCall: state is AddNoteLoading ? true : false,
-            child: NoteForm(),
-          );
-        },
-      ),
+    return BlocConsumer<AddNoteCubit, AddNoteState>(
+      listener: (context, state) {
+        if (state is AddNoteFailure) {
+          print("failed ${state.errmsg}");
+        }
+        if (state is AddNoteSuccess) {}
+      },
+      builder: (context, state) {
+        return ModalProgressHUD(
+          inAsyncCall: state is AddNoteLoading ? true : false,
+          child: const SingleChildScrollView(child: NoteForm()),
+        );
+      },
     );
   }
 }
