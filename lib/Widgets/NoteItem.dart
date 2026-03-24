@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:notesapp/Models/NoteModal.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key});
+  const NoteItem({super.key, required this.note});
+
+  final NoteModal note;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class NoteItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             ListTile(
-              title: Text('Flutter Tips'),
+              title: Text(note.title),
               titleTextStyle: const TextStyle(
                 color: Colors.black,
                 fontSize: 26,
@@ -29,7 +32,7 @@ class NoteItem extends StatelessWidget {
               subtitle: Padding(
                 padding: const EdgeInsets.only(top: 16, bottom: 16),
                 child: Text(
-                  'Build your career with me',
+                  note.content,
                   style: TextStyle(
                     color: Colors.black.withAlpha(100),
                     fontSize: 18,
@@ -45,7 +48,7 @@ class NoteItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 16.0),
               child: Text(
-                "May21, 2000",
+                note.date,
                 style: TextStyle(
                   color: Colors.black.withAlpha(60),
                   fontSize: 16,

@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notesapp/Models/NoteModal.dart';
 import 'package:notesapp/Widgets/CustomAppBar.dart';
+import 'package:notesapp/cubit/read_notes_cubit/read_notes_cubit.dart';
 
 import 'NoteItem.dart';
 
-class NotesViewBody extends StatelessWidget {
+class NotesViewBody extends StatefulWidget {
   const NotesViewBody({super.key});
+
+  @override
+  State<NotesViewBody> createState() => _NotesViewBodyState();
+}
+
+class _NotesViewBodyState extends State<NotesViewBody> {
+  @override
+  void initState() {
+    BlocProvider.of<ReadNotesCubit>(context).FetchAllNotes();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,16 +37,21 @@ class NotesViewBody extends StatelessWidget {
 class NotesListView extends StatelessWidget {
   const NotesListView({super.key});
 
-  final data = const [];
-
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemBuilder: (context, index) {
-          return const NoteItem();
-        },
-      ),
+    return BlocBuilder<ReadNotesCubit, ReadNotesState>(
+      builder: (context, state) {
+        List<NoteModal> notes =
+            BlocProvider.of<ReadNotesCubit>(context).notes ?? [];
+        return Expanded(
+          child: ListView.builder(
+            itemCount: notes.length,
+            itemBuilder: (context, index) {
+              return NoteItem(note: notes[index]);
+            },
+          ),
+        );
+      },
     );
   }
 }
