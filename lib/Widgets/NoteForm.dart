@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notesapp/Models/NoteModal.dart';
 import 'package:notesapp/cubit/add_note_cubit/add_note_cubit.dart';
-
+import 'package:intl/intl.dart';
 import 'CustomButton.dart';
 import 'CustomTextField.dart';
 
@@ -55,7 +55,9 @@ class _NoteFormState extends State<NoteForm> {
                     var Note_m = NoteModal(
                       title: title!,
                       content: subtitle!,
-                      date: DateTime.now().toString(),
+                      date: DateFormat(
+                        'h:mm a',
+                      ).format(DateTime.now()).toString(),
                       color: Colors.teal.toARGB32(),
                     );
                     BlocProvider.of<AddNoteCubit>(context).addNote(Note_m);

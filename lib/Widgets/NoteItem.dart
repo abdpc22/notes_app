@@ -49,10 +49,7 @@ class NoteItem extends StatelessWidget {
               padding: const EdgeInsets.only(right: 16.0),
               child: Text(
                 note.date,
-                style: TextStyle(
-                  color: Colors.black.withAlpha(60),
-                  fontSize: 16,
-                ),
+                style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ),
           ],
