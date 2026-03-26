@@ -17,12 +17,15 @@ class NoteItem extends StatelessWidget {
           context,
           MaterialPageRoute(builder: (context) => EditNoteView(note: note)),
         );
+        if (context.mounted) {
+          BlocProvider.of<ReadNotesCubit>(context).FetchAllNotes();
+        }
       },
       child: Container(
         margin: const EdgeInsets.only(left: 35, right: 35, top: 20),
         padding: const EdgeInsets.only(top: 14, left: 16, bottom: 16),
         decoration: BoxDecoration(
-          color: Colors.amberAccent,
+          color: Color(note.color),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
