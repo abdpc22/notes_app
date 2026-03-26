@@ -12,11 +12,14 @@ class NoteItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
+      onTap: () async {
+        await Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => EditNoteView(note: note)),
         );
+        if (context.mounted) {
+          BlocProvider.of<ReadNotesCubit>(context).FetchAllNotes();
+        }
       },
       child: Container(
         margin: const EdgeInsets.only(left: 35, right: 35, top: 20),
