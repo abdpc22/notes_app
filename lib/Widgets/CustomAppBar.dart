@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key, required this.ico, this.txt = "Notes"});
+  const CustomAppBar({
+    super.key,
+    required this.ico,
+    this.txt = "Notes",
+    this.tap,
+  });
 
+  final Function()? tap;
   final IconData ico;
   final String txt;
 
@@ -12,15 +18,16 @@ class CustomAppBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(txt, style: TextStyle(color: Colors.white, fontSize: 28)),
-        CustomSearchIcon(icon: ico),
+        CustomSearchIcon(icon: ico, tap: tap),
       ],
     );
   }
 }
 
 class CustomSearchIcon extends StatelessWidget {
-  const CustomSearchIcon({super.key, required this.icon});
+  const CustomSearchIcon({super.key, required this.icon, this.tap});
 
+  final Function()? tap;
   final IconData icon;
 
   @override
@@ -32,7 +39,9 @@ class CustomSearchIcon extends StatelessWidget {
         color: Colors.white.withAlpha(20),
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Center(child: Icon(icon, size: 25)),
+      child: Center(
+        child: IconButton(onPressed: tap, iconSize: 25, icon: Icon(icon)),
+      ),
     );
   }
 }

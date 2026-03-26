@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notesapp/Models/NoteModal.dart';
 import 'package:notesapp/Views/NotesView.dart';
-import 'package:notesapp/Widgets/edit_note_view.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notesapp/constants.dart';
 import 'package:notesapp/simple_bloc_observer.dart';
@@ -24,7 +23,9 @@ class NotesApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      routes: {"editnote": (context) => EditNoteView()},
+      routes: {
+        //"editnote": (context) => EditNoteView(note: null,)
+      },
       theme: ThemeData(
         brightness: Brightness.dark,
         fontFamily: "Poppins",

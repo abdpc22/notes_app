@@ -12,26 +12,30 @@ class NotesView extends StatelessWidget {
     return SafeArea(
       child: BlocProvider(
         create: (context) => ReadNotesCubit(),
-        child: Scaffold(
-          body: const NotesViewBody(),
-          floatingActionButton: FloatingActionButton(
-            shape: const CircleBorder(),
-            backgroundColor: Colors.tealAccent,
-            child: Icon(Icons.add, color: Colors.black),
-            onPressed: () async {
-              await showModalBottomSheet(
-                isScrollControlled: true,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadiusGeometry.circular(30),
-                ),
-                context: context,
-                builder: (context) => ModalSheet(),
-              );
-              if (context.mounted) {
-                BlocProvider.of<ReadNotesCubit>(context).FetchAllNotes();
-              }
-            },
-          ),
+        child: Builder(
+          builder: (context) {
+            return Scaffold(
+              body: const NotesViewBody(),
+              floatingActionButton: FloatingActionButton(
+                shape: const CircleBorder(),
+                backgroundColor: Colors.tealAccent,
+                child: Icon(Icons.add, color: Colors.black),
+                onPressed: () async {
+                  await showModalBottomSheet(
+                    isScrollControlled: true,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.circular(30),
+                    ),
+                    context: context,
+                    builder: (context) => ModalSheet(),
+                  );
+                  if (context.mounted) {
+                    BlocProvider.of<ReadNotesCubit>(context).FetchAllNotes();
+                  }
+                },
+              ),
+            );
+          },
         ),
       ),
     );

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notesapp/Models/NoteModal.dart';
 import 'package:notesapp/cubit/add_note_cubit/add_note_cubit.dart';
 import 'package:intl/intl.dart';
+import 'package:notesapp/cubit/read_notes_cubit/read_notes_cubit.dart';
 import 'CustomButton.dart';
 import 'CustomTextField.dart';
 
@@ -52,19 +53,20 @@ class _NoteFormState extends State<NoteForm> {
                 onTap: () {
                   if (formk.currentState!.validate()) {
                     formk.currentState!.save();
+                    var Date = DateFormat(
+                      "dd-mm-yyyy",
+                    ).format(DateTime.now()).toString();
                     var Note_m = NoteModal(
                       title: title!,
                       content: subtitle!,
-                      date: DateFormat(
-                        'h:mm a',
-                      ).format(DateTime.now()).toString(),
+                      date: Date,
                       color: Colors.teal.toARGB32(),
                     );
                     BlocProvider.of<AddNoteCubit>(context).addNote(Note_m);
                   } else {
                     autov = AutovalidateMode.always;
                   }
-                  setState(() {});
+                  BlocProvider.of<ReadNotesCubit>(context).FetchAllNotes();
                 },
               );
             },
