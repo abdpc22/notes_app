@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notesapp/Models/NoteModal.dart';
 import 'package:notesapp/Widgets/CustomAppBar.dart';
 import 'package:notesapp/Widgets/CustomTextField.dart';
+import 'EditNoteListView.dart';
 
 class EditNoteViewBody extends StatefulWidget {
   const EditNoteViewBody({super.key, required this.note});
@@ -50,6 +51,8 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
               content = value!;
             },
           ),
+          SizedBox(height: 20),
+          EditColorListView(note: widget.note),
         ],
       ),
     );
